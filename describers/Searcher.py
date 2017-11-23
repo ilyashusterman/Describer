@@ -3,4 +3,6 @@ class Searcher(object):
         self.keyword = keyword
 
     def get_analyzization(self):
+
+        # TODO get analization from free search engine or wikipedia
         pass

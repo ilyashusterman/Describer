@@ -4,5 +4,6 @@ class Searcher(object):
 
     def get_analyzization(self):
 
-        # TODO get analization from free search engine or wikipedia
-        pass
+        return {
+            'name': ''
+        }

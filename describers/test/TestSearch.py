@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from describers.Searcher import Searcher
+from describers.Search import Search
 
 
 class TestDescriptor(TestCase):
@@ -17,7 +17,7 @@ class TestDescriptor(TestCase):
                   'the wolves that were first domesticated, ' \
                   'which implies that the direct ancestor of ' \
                   'the dog is extinct.'
-        s = Searcher(keyword)
+        s = Search(keyword)
         analization = s.get_analyzization()
         self.assertEqual(analization.get('name'), 'dog')
         self.assertEqual(len(analization.get('summary')), len(summary),

@@ -2,7 +2,7 @@ import wikipedia
 from plugins.citizendium import citizendium
 
 
-class Searcher(object):
+class Search(object):
     def __init__(self, keyword):
         self.keyword = keyword
 

@@ -1,23 +1,6 @@
-import tensorflow as tf
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
+import operator
 
-import argparse
-import os.path
-import re
-import sys
-import tarfile
-
-import numpy as np
-from six.moves import urllib
-import tensorflow as tf
-
-FLAGS = None
-
-# pylint: disable=line-too-long
-DATA_URL = 'http://download.tensorflow.org/models/image/imagenet/inception-2015-12-05.tgz'
-# pylint: enable=line-too-long
+from describers.classify_image import get_image_classification
 
 
 class Recognition(object):
@@ -25,6 +8,8 @@ class Recognition(object):
         self.filename = filename
 
     def classify_image(self):
-        return {
-            'value': ''
-        }
+        classifications = get_image_classification(self.filename)
+        print (classifications)
+        max_key = max(classifications.keys(), key=float)
+        print(max_key)
+        return classifications[max_key]

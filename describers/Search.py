@@ -6,7 +6,7 @@ class Search(object):
     def __init__(self, keyword):
         self.keyword = keyword
 
-    def get_analyzization(self):
+    def get_analyzization(self, sentences=2):
         # citi_found_pages = citizendium.search(self.keyword)
         found_pages = wikipedia.search(self.keyword)
         if len(found_pages) > 0:
@@ -17,7 +17,7 @@ class Search(object):
         else:
             return {'name': 'no_information'}
         # value_meta = wikipedia.page(value_found)
-        summary = wikipedia.summary(value_found, sentences=2)
+        summary = wikipedia.summary(value_found, sentences=sentences)
         # summary_city = citizendium.summary('Dog', sentences=2)
 
         return {

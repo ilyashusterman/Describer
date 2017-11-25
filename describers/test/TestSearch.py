@@ -41,3 +41,17 @@ class TestDescriptor(TestCase):
         analization = search.get_analyzization(sentences=3)
         self.assertEqual(len(analization['summary']), len(summary),
                          analization)
+
+    def test_analization_summary_of_desk(self):
+        summary = 'A desk or bureau is a piece of furniture with a flat ' \
+                  'table-style work surface used in a school, office, ' \
+                  'home or the like for academic, professional or domestic' \
+                  ' activities such as reading, writing, or using equipment ' \
+                  'such as a computer.  Desks often have one or ' \
+                  'more drawers, ' \
+                  'compartments, or pigeonholes to store items' \
+                  ' such as office supplies and papers.'
+        search = Search('desk')
+        analization = search.get_analyzization(sentences=2)
+        self.assertEqual(len(analization['summary']), len(summary),
+                         analization)

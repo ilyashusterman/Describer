@@ -170,7 +170,8 @@ def run_inference_on_image(image):
             score = predictions[node_id]
             classifications[score] = \
                 {'value': human_string,
-                 'analysis': '%s (score = %.5f)' % (human_string, score)}
+                 'analysis': '%s (score = %.5f)' % (human_string, score),
+                 'score': score}
             # print('%s (score = %.5f)' % (human_string, score))
     return classifications
 

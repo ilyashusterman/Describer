@@ -1,4 +1,5 @@
 from unittest import TestCase
+from unipath import Path
 
 from describers.Recognition import Recognition
 from describers.Search import Search
@@ -8,7 +9,7 @@ class TestDescription(TestCase):
 
     def test_description_of_desk_image(self):
         item = 'desk'
-        recognition = Recognition('test/test_{}.jpg'.format(item))
+        recognition = Recognition(Path(Path(__file__).parent, 'test_{}.jpg'.format(item)))
         classification = recognition.classify_image()
         self.assertTrue('{}'.format(item) in classification['value'],
                         classification)
@@ -20,6 +21,24 @@ class TestDescription(TestCase):
                   'more drawers, ' \
                   'compartments, or pigeonholes to store items' \
                   ' such as office supplies and papers.'
+        search = Search(classification['value'])
+        analization = search.get_analyzization(sentences=2)
+        self.assertEqual(len(analization['summary']), len(summary),
+                         analization)
+
+    def test_description_of_door_image(self):
+        item = 'door'
+        recognition = Recognition(Path(Path(__file__).parent,
+                                       'test_{}.jpg'.format(item)))
+        classification = recognition.classify_image()
+        self.assertTrue('{}'.format(item) in classification['value'],
+                        classification)
+        summary = 'A door is a moving mechanism used to block off,' \
+                  ' and allow access to, an entrance to or within ' \
+                  'an enclosed space, such as a building,' \
+                  ' room or vehicle. Doors normally consist ' \
+                  'of one or two solid panels, with or without' \
+                  ' windows, that swing on hinges horizontally.'
         search = Search(classification['value'])
         analization = search.get_analyzization(sentences=2)
         self.assertEqual(len(analization['summary']), len(summary),

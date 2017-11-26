@@ -13,7 +13,8 @@ class Search(object):
             # FIXME better way to foind out
             value_found = found_pages[0]
             # citi_value_found = citi_found_pages[0]
-            assert value_found == self.keyword.title()
+            print (value_found)
+            # assert value_found == self.keyword.title()
         else:
             return {'name': 'no_information'}
         # value_meta = wikipedia.page(value_found)

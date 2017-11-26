@@ -5,7 +5,7 @@ from describers.classify_image import get_image_classification
 
 
 class Recognition(object):
-    DEFAULT_BEST_SCORE = 0.55
+    DEFAULT_BEST_SCORE = 0.70
 
     def __init__(self, filename):
         self.filename = filename
@@ -44,8 +44,10 @@ class Recognition(object):
                     if word is second_word:
                         pass
                     else:
-                        new_words.append(second_word.replace(word,
-                                                             '').replace(',', ''))
+                        found_word = second_word.replace(word, '')
+                        if ',' in found_word:
+                            found_word = found_word.replace(',', '')
+                        new_words.append(found_word)
         new_words = [char for char in new_words if char != '']
         all_words = words+new_words
         return all_words

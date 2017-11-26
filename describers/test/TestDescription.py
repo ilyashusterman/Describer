@@ -43,3 +43,20 @@ class TestDescription(TestCase):
         analization = search.get_analyzization(sentences=2)
         self.assertEqual(len(analization['summary']), len(summary),
                          analization)
+
+    def test_description_of__image(self):
+        item = 'bottle'
+        recognition = Recognition(Path(Path(__file__).parent,
+                                       'test_{}.jpg'.format(item)))
+        classification = recognition.classify_image()
+        self.assertTrue('{}'.format(item) in classification['value'],
+                        classification)
+        summary = 'A bottle is a rigid container with a neck' \
+                  ' that is narrower than the body and a mouth. ' \
+                  'By contrast, a jar has a relatively large ' \
+                  'mouth or opening which may be as wide as' \
+                  ' the overall container.'
+        search = Search(classification['value'])
+        analization = search.get_analyzization(sentences=2)
+        self.assertEqual(len(analization['summary']), len(summary),
+                         analization)

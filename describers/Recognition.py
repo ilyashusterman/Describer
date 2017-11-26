@@ -49,5 +49,6 @@ class Recognition(object):
                             found_word = found_word.replace(',', '')
                         new_words.append(found_word)
         new_words = [char for char in new_words if char != '']
+        words = [old_word.replace(',', ' ') for old_word in words]
         all_words = words+new_words
         return all_words

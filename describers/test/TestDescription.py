@@ -28,13 +28,23 @@ class TestDescription(TestCase):
                   ' windows, that swing on hinges horizontally.'
         self.check_image(item, summary)
 
-    def test_description_of__image(self):
+    def test_description_of_bottle_image(self):
         item = 'bottle'
         summary = 'A bottle is a rigid container with a neck' \
                   ' that is narrower than the body and a mouth. ' \
                   'By contrast, a jar has a relatively large ' \
                   'mouth or opening which may be as wide as' \
                   ' the overall container.'
+        self.check_image(item, summary)
+
+    def test_description_of_sheep_image(self):
+        item = 'wolf'
+        summary = 'The gray wolf or grey wolf (Canis lupus), also known ' \
+                  'as the timber wolf or western wolf, is a canine ' \
+                  'native to the wilderness and remote areas of Eurasia ' \
+                  'and North America. It is the largest extant member of ' \
+                  'its family, with males averaging 43–45 kg (95–99 lb)' \
+                  ' and females 36–38.5 kg (79–85 lb).'
         self.check_image(item, summary)
 
     def check_image(self, item, summary):

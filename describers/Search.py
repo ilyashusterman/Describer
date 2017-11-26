@@ -1,9 +1,11 @@
+import logging
 import wikipedia
-from plugins.citizendium import citizendium
 
 
 class Search(object):
     def __init__(self, keyword):
+        if ' ' in keyword:
+            keyword = keyword.replace(' ', '')
         self.keyword = keyword
 
     def get_analyzization(self, sentences=2):
@@ -13,7 +15,7 @@ class Search(object):
             # FIXME better way to foind out
             value_found = found_pages[0]
             # citi_value_found = citi_found_pages[0]
-            print(value_found)
+            logging.debug('found_pages={}'.format(found_pages))
             assert value_found == self.keyword.title() or \
                    value_found in self.keyword or \
                    self.keyword in value_found

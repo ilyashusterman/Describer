@@ -3,8 +3,8 @@ from unipath import Path
 
 from describers.Recognition import Recognition
 
-class TestRecognition(TestCase):
 
+class TestRecognition(TestCase):
     def test_mouse_image_classification(self):
         recognition = Recognition(Path(Path(__file__).parent, 'test_mouse.jpg'))
         classification = recognition.classify_image()

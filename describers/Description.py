@@ -6,7 +6,7 @@ from describers.Recognition import Recognition
 from describers.Search import Search
 
 
-class Describer(object):
+class Description(object):
 
     def __init__(self, image):
         self.filename = image
@@ -39,4 +39,4 @@ class Describer(object):
 
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO)
-    Describer.main()
+    Description.main()

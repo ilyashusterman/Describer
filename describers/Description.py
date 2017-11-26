@@ -16,8 +16,8 @@ class Description(object):
                                        self.filename))
         classification = recognition.classify_image()
         search = Search(classification['value'])
-        analization = search.get_analyzization(sentences=2)
         print('Value={}'.format(search.keyword))
+        analization = search.get_analyzization(sentences=2)
         print('Data={}'.format(analization['summary']))
 
     @classmethod

@@ -1,3 +1,4 @@
+import logging
 import operator
 from collections import Counter
 from describers.classify_image import get_image_classification
@@ -11,19 +12,19 @@ class Recognition(object):
 
     def classify_image(self):
         classifications = get_image_classification(self.filename)
-        print(classifications)
+        logging.debug(classifications)
         max_key = max(classifications.keys(), key=float)
         if max_key > self.DEFAULT_BEST_SCORE:
-            print('max_key={}'.format(max_key))
+            logging.debug('max_key={}'.format(max_key))
             return classifications[max_key]
         else:
             keys_values = [sentences['value']
                            for key, sentences in classifications.items()]
-            print ('keys_values={}'.format(keys_values))
+            logging.debug('keys_values={}'.format(keys_values))
             keys = self.find_keyword(keys_values)
-            print('keys={}'.format(keys))
+            logging.debug('keys={}'.format(keys))
             max_count_key = max(keys.items(), key=operator.itemgetter(1))
-            print('max_count_key={}'.format(max_count_key[0]))
+            logging.debug('max_count_key={}'.format(max_count_key[0]))
             return {'value': max_count_key[0]}
 
     def find_keyword(self, keywords):

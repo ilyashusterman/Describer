@@ -28,6 +28,11 @@ class TestDescription(TestCase):
                   ' windows, that swing on hinges horizontally.'
         self.check_image(item, summary)
 
+    def test_description_of_plate_image(self):
+        item = 'plate'
+        summary = 'no_information'
+        self.check_image(item, summary)
+
     def test_description_of_bottle_image(self):
         item = 'bottle'
         summary = 'A bottle is a rigid container with a neck' \
@@ -56,4 +61,5 @@ class TestDescription(TestCase):
         search = Search(classification['value'])
         analization = search.get_analyzization(sentences=2)
         self.assertEqual(len(analization['summary']), len(summary),
-                         analization)
+                         'analization={} summary={}'
+                         .format(analization, summary))

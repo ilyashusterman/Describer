@@ -57,9 +57,10 @@ class TestDescriptor(TestCase):
         self.assertEqual(len(analization['summary']), len(summary),
                          analization)
 
-    # def test_analization_summary_of_plate(self):
-    #     summary = 'Plate'
-    #     search = Search('Plate')
-    #     analization = search.get_analyzization(sentences=2)
-    #     self.assertEqual(len(analization['summary']), len(summary),
-    #                      analization)
+    def test_analization_summary_of_plate(self):
+        item = 'plate'
+        summary = 'no_further_information'
+        search = Search(item)
+        analization = search.get_analyzization(sentences=2)
+        self.assertEqual(len(analization['summary']), len(summary),
+                         analization)

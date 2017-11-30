@@ -5,7 +5,7 @@ from describers.classify_image import get_image_classification
 
 
 class Recognition(object):
-    DEFAULT_BEST_SCORE = 0.70
+    DEFAULT_BEST_SCORE = 0.73
 
     def __init__(self, filename):
         self.filename = filename
@@ -25,7 +25,7 @@ class Recognition(object):
             logging.debug('keys={}'.format(keys))
             max_count_key = max(keys.items(), key=operator.itemgetter(1))
             logging.debug('max_count_key={}'.format(max_count_key[0]))
-            return {'value': max_count_key[0]}
+            return {'value': max_count_key[0], 'helpers': keys}
 
     def find_keyword(self, keywords):
         words = []

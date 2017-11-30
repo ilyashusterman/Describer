@@ -30,7 +30,7 @@ class TestDescription(TestCase):
 
     def test_description_of_plate_image(self):
         item = 'plate'
-        summary = 'no_information'
+        summary = 'no_further_information'
         self.check_image(item, summary)
 
     def test_description_of_bottle_image(self):
@@ -42,7 +42,7 @@ class TestDescription(TestCase):
                   ' the overall container.'
         self.check_image(item, summary)
 
-    def test_description_of_sheep_image(self):
+    def test_description_of_wolf_image(self):
         item = 'wolf'
         summary = 'The gray wolf or grey wolf (Canis lupus), also known ' \
                   'as the timber wolf or western wolf, is a canine ' \
@@ -50,6 +50,15 @@ class TestDescription(TestCase):
                   'and North America. It is the largest extant member of ' \
                   'its family, with males averaging 43–45 kg (95–99 lb)' \
                   ' and females 36–38.5 kg (79–85 lb).'
+        self.check_image(item, summary)
+
+    def test_description_of_brain_image(self):
+        item = 'brain'
+        summary = 'The brain is an organ that serves as the center ' \
+                  'of the nervous system in all vertebrate and most ' \
+                  'invertebrate animals. The brain is located' \
+                  ' in the head, usually close to the sensory ' \
+                  'organs for senses such as vision.'
         self.check_image(item, summary)
 
     def check_image(self, item, summary):

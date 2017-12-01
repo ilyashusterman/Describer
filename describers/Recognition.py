@@ -16,7 +16,7 @@ class Recognition(object):
         max_key = max(classifications.keys(), key=float)
         if max_key > self.DEFAULT_BEST_SCORE:
             logging.debug('max_key={}'.format(max_key))
-            return classifications[max_key]
+            image_classification = classifications[max_key]['value']
         else:
             keys_values = [sentences['value']
                            for key, sentences in classifications.items()]
@@ -25,7 +25,9 @@ class Recognition(object):
             logging.debug('keys={}'.format(keys))
             max_count_key = max(keys.items(), key=operator.itemgetter(1))
             logging.debug('max_count_key={}'.format(max_count_key[0]))
-            return {'value': max_count_key[0]}
+            image_classification = max_count_key[0]
+
+        return {'value': image_classification, 'accuracy': max_key}
 
     def find_keyword(self, keywords):
         words = []

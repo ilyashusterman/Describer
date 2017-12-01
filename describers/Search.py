@@ -33,28 +33,21 @@ class Search(object):
         }
 
     def get_summary(self, found_pages, sentences, value_found):
-        summary = self.SUMMARY_DEFAULT_MESSAGE
         try:
             summary = wikipedia.summary(value_found,
                                         sentences=sentences)
         except wikipedia.DisambiguationError:
-            summary, value_found = self.handle_summary(found_pages, sentences,
-                                                       summary)
+            summary, value_found = self.handle_summary(found_pages, sentences)
             pass
         return summary, value_found
 
-    def handle_summary(self, found_pages, sentences, summary):
+    def handle_summary(self, found_pages, sentences):
         time_counts = 0
         value_found = found_pages[0]
-        while True:
-            if time_counts > self.SEARCH_COUNT or\
-                            summary is not self.SUMMARY_DEFAULT_MESSAGE:
-                summary = self.SUMMARY_DEFAULT_MESSAGE \
-                    if summary is None else summary
-                break
+        summary = None
+        while time_counts < self.SEARCH_COUNT:
             try:
-                summary = wikipedia.summary(value_found,
-                                            sentences=sentences)
+                summary = wikipedia.summary(value_found, sentences=sentences)
             except wikipedia.DisambiguationError as e:
                 summary = None
                 # TODO need to fix this options summary from other source
@@ -62,6 +55,8 @@ class Search(object):
                 #            if self.keyword in option]
                 # value_found = options[0]
             time_counts += 1
+        summary = self.SUMMARY_DEFAULT_MESSAGE \
+            if summary is None else summary
         return summary, value_found
 
     def get_found_value(self, found_values, value_found):

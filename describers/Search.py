@@ -13,13 +13,14 @@ class Search(object):
         self.keyword = keyword.title()
 
     def get_analyzization(self, sentences=2):
-        print('self.keyword={}'.format(self.keyword))
+        logging.debug('self.keyword={}'.format(self.keyword))
         found_pages = wikipedia.search(self.keyword)
-        print('found_pages={}'.format(found_pages))
+        logging.debug('found_pages={}'.format(found_pages))
         if len(found_pages) > 0:
             default_value = found_pages[0]
             logging.debug('found_pages={}'.format(found_pages))
-            value_found = self.get_found_value(found_pages, default_value)
+            # value_found = self.get_found_value(found_pages, default_value)
+            value_found = default_value
         else:
             return {'name': self.keyword,
                     'summary': self.SUMMARY_DEFAULT_MESSAGE}
@@ -60,6 +61,7 @@ class Search(object):
         return summary, value_found
 
     def get_found_value(self, found_values, value_found):
+
         found_value = value_found
         for keyword_value in found_values:
             if keyword_value == self.keyword.title() or \

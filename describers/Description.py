@@ -16,20 +16,25 @@ class Description(object):
                                        self.filename))
         classification = recognition.classify_image()
         search = Search(classification['value'])
-        print('Value={}'.format(search.keyword))
         analization = search.get_analyzization(sentences=2)
-        print('Data={}'.format(analization['summary']))
+        description = {
+            'value': search.keyword,
+            'data': analization['summary']
+        }
+        # print('Value={}'.format(search.keyword))
+        # print('Data={}'.format(analization['summary']))
+        print('description={}'.format(description))
 
     @classmethod
     def main(cls):
         parser = argparse.ArgumentParser()
         commands = parser.add_mutually_exclusive_group(required=True)
-        commands.add_argument('--describe-image', action='store_true')
+        commands.add_argument('--describe', action='store_true')
         parser.add_argument('--image', default='test.jpg',
                             help='Custom input test image default test.jpg')
         args = parser.parse_args()
         describer = cls(args.image)
-        if args.describe_image:
+        if args.describe:
             describer.describe()
         elif args.insert:
             raise NotImplementedError()

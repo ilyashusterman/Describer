@@ -5,6 +5,7 @@ import wikipedia
 class Search(object):
     SEARCH_COUNT = 1
     SUMMARY_DEFAULT_MESSAGE = 'no_further_information'
+
     def __init__(self, keyword):
         if keyword.strip().find(' ') != -1:
             keyword = keyword.split(' ')[0]
